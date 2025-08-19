@@ -1,1 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header id="navbar">
+    <div class="container nav-inner">
+      <div class="logo">D-moc<span class="dot">.</span></div>
+      <nav>
+        <ul>
+          <li><a href="#welcome-section">Home</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a id="profile-link" href="https://github.com/D-moc" target="_blank" rel="noopener">GitHub</a></li>
+        </ul>
+      </nav>
+      <button class="burger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
 
+  <main>
+    <section id="welcome-section">
+      <div class="welcome-content">
+        <h1>Hello, I'm Dinesh</h1>
+        <p>Full Stck Web Developer</p>
+        <a class="cta" href="#projects">See My Work ↓</a>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+          <!-- Project Tile 1 -->
+          <div class="project-tile">
+            <div class="project-inner">
+              <h3>Responsive Portfolio</h3>
+              <p>A personal portfolio website that adapts to all screen sizes.</p>
+              <a class="project-link" href="https://github.com/D-moc/My-Portfolio-Website.git" target="_blank" rel="noopener">View on GitHub</a>
+            </div>
+          </div>
+          <!-- Project Tile 2 -->
+          <div class="project-tile">
+            <div class="project-inner">
+              <h3>RockPaperScissors</h3>
+              <p>A quick browser game where you play against the computer. Instant results, running score, and responsive UI.</p>
+              <a class="project-link" href="https://github.com/D-moc/RockPaperScissors.git" target="_blank" rel="noopener">View on GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Dinesh. Built with HTML &amp; CSS.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle
+    const burger = document.querySelector('.burger');
+    const navList = document.querySelector('header nav ul');
+    burger.addEventListener('click', () => {
+      navList.classList.toggle('open');
+      burger.classList.toggle('active');
+    });
+
+    // Close menu on link click & smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+          if (navList.classList.contains('open')) {
+            navList.classList.remove('open');
+            burger.classList.remove('active');
+          }
+        }
+      });
+    });
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
